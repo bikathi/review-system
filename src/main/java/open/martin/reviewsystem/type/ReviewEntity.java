@@ -16,7 +16,7 @@ public class ReviewEntity {
     @Id
     @GeneratedValue(strategy =  GenerationType.AUTO)
     @Column(name = "unit_id")
-    private Long entity_id;
+    private Long entityId;
 
     @Column(name = "entity_name", unique = true, nullable = false)
     @Size(min = 1, max = 255)

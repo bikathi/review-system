@@ -5,24 +5,29 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import open.martin.reviewsystem.type.ReviewEntity;
+import open.martin.reviewsystem.type.SampleReview;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.Set;
 import java.util.UUID;
 
 @Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name ="product_entity")
+@Table(name ="product_review")
 @EqualsAndHashCode(callSuper = true)
-public class Product extends ReviewEntity implements Serializable {
+
+public class ProductReview extends SampleReview implements Serializable {
     @Serial
     @Transient
     private static final long serialVersionUID = UUID.randomUUID().getLeastSignificantBits();
 
-    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<ProductReview> productReviews;
+    @ManyToOne
+    @JoinColumn(name = "product_id", nullable = false)
+    private Product product;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private UserAccount user;
 }
