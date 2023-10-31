@@ -33,5 +33,5 @@ public class SampleReview {
     @Column(name = "rating", nullable = false)
     @PositiveOrZero
     @Max(5) // rating 0 - 5
-    private Byte rating;
+    private Integer rating;
 }

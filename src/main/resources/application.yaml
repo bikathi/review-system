@@ -7,7 +7,7 @@ spring:
   application:
     name: review-system
   jpa:
-    database-platform: org.hibernate.dialect.MySQL8Dialect
+#    database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
       ddl-auto: update
     show-sql: true
