@@ -25,7 +25,7 @@ public class ReviewEntity {
 
     @Column(name = "entity_description", nullable = false)
     @Basic
-    @Size(min = 100, max = 2000)
+    @Size(min = 1, max = 2000)
     private String entityDescription;
 
     @Temporal(TemporalType.DATE)
