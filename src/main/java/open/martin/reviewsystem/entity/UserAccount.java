@@ -63,7 +63,7 @@ public class UserAccount implements Serializable {
     @JoinTable(name = "user_roles",
         joinColumns = @JoinColumn(name = "account_id"),
         inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<UserRole> roles = new HashSet<>();
+    private Set<SystemRole> roles = new HashSet<>();
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<ProductReview> productReviews;

@@ -12,7 +12,7 @@ import open.martin.reviewsystem.type.Role;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name ="system_role")
-public class UserRole {
+public class SystemRole {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "role_id")
