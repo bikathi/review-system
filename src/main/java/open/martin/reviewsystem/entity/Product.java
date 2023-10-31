@@ -16,7 +16,10 @@ import java.util.UUID;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name ="product_entity")
+@Table(name ="product_entity", uniqueConstraints = {
+    @UniqueConstraint(columnNames = "entity_name"),
+    @UniqueConstraint(columnNames = "preview_url")
+})
 @EqualsAndHashCode(callSuper = true)
 public class Product extends ReviewEntity implements Serializable {
     @Serial
