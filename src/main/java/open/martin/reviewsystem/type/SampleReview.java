@@ -15,7 +15,7 @@ import java.util.Date;
 @MappedSuperclass
 public class SampleReview {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long reviewId;
 
     @Column(name = "date_posted", nullable = false)
