@@ -14,7 +14,7 @@ import java.util.Date;
 @MappedSuperclass
 public class ReviewEntity {
     @Id
-    @GeneratedValue(strategy =  GenerationType.AUTO)
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
     @Column(name = "unit_id")
     private Long entityId;
 
@@ -29,10 +29,10 @@ public class ReviewEntity {
     private String entityDescription;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "date_posted")
+    @Column(name = "date_posted", nullable = false)
     private Date datePosted;
 
-    @Column(name = "preview_url", unique = true)
+    @Column(name = "preview_url", unique = true, nullable = false)
     @Size(min = 1, max = 200)
     private String previewUrl;
 }
