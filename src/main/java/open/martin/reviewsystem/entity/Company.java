@@ -1,14 +1,12 @@
 package open.martin.reviewsystem.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import open.martin.reviewsystem.type.ReviewEntity;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -27,5 +25,5 @@ public class Company extends ReviewEntity implements Serializable {
     private static final long serialVersionUID = UUID.randomUUID().getLeastSignificantBits();
 
     @OneToMany(mappedBy = "company", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<CompanyReview> reviews;
+    private Set<CompanyReview> reviews = new HashSet<>();
 }
