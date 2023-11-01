@@ -22,7 +22,7 @@ public class CompanyReview extends SampleReview implements Serializable {
     @Transient
     private static final long serialVersionUID = UUID.randomUUID().getLeastSignificantBits();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "company_id", nullable = false)
     private Company company;
 
