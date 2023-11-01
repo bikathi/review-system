@@ -18,3 +18,12 @@ spring:
   # SET ACTIVE PROFILE TO THE DEV ENV
   profiles:
     active: dev
+  # REDIS CONFIGURATIONS
+  data:
+    redis:
+      database: 0
+      host: localhost
+      port:
+      password:
+      timeout:
+      cache-null-values: false
