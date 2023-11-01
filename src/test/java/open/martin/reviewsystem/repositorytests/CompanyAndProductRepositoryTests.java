@@ -49,7 +49,7 @@ public class CompanyRepositoryTests {
 
     @Test
     @DisplayName(value = "Test inserting incomplete Company throws Exception")
-    void ensureSavingIncompleteCompanyThrowsException(TestInfo testInfo) {
+    void ensureSavingMalformedCompanyThrowsException(TestInfo testInfo) {
         System.out.println("Running test: " + testInfo.getDisplayName());
 
         testCompany.setEntityName(null);
