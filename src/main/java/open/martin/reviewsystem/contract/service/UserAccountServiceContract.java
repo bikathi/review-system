@@ -1,4 +1,4 @@
-package open.martin.reviewsystem.contract;
+package open.martin.reviewsystem.contract.service;
 
 public interface UserAccountServiceContract {
     void createUserAccount();
