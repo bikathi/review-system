@@ -17,6 +17,6 @@ public class SystemRoleService implements SystemRoleServiceContract {
 
     @Override
     public SystemRole findSystemRoleByName(Role role) {
-        return systemRoleRepository.findByName(role).orElseThrow(() -> new InvalidOperationException());
+        return systemRoleRepository.findByRoleName(role).orElseThrow(() -> new InvalidOperationException("Operation on undefined role"));
     }
 }
