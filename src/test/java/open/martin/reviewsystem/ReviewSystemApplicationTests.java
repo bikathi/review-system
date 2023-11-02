@@ -6,6 +6,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -29,6 +30,9 @@ class ReviewSystemApplicationTests {
 	@Autowired
 	UserAccountRepository userAccountRepository;
 
+	@Autowired
+	ModelMapper modelMapper;
+
 	@Test@DisplayName(value = "Test application bootstrapping")
 	void contextLoads(TestInfo testInfo) {
 		System.out.println("Running test: " + testInfo.getDisplayName());
@@ -40,6 +44,7 @@ class ReviewSystemApplicationTests {
 		Assertions.assertThat(productReviewRepository).isNotNull();
 		Assertions.assertThat(systemRoleRepository).isNotNull();
 		Assertions.assertThat(userAccountRepository).isNotNull();
+		Assertions.assertThat(modelMapper).isNotNull();
 	}
 
 }
