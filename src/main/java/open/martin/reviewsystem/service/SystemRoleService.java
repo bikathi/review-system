@@ -1,7 +1,7 @@
 package open.martin.reviewsystem.service;
 
 import lombok.extern.slf4j.Slf4j;
-import open.martin.reviewsystem.contract.SystemRoleServiceContract;
+import open.martin.reviewsystem.contract.service.SystemRoleServiceContract;
 import open.martin.reviewsystem.entity.SystemRole;
 import open.martin.reviewsystem.exception.InvalidOperationException;
 import open.martin.reviewsystem.repository.SystemRoleRepository;
