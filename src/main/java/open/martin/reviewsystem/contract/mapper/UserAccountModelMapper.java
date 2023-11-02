@@ -1,5 +1,6 @@
-package open.martin.reviewsystem.contract;
+package open.martin.reviewsystem.contract.mapper;
 
+import open.martin.reviewsystem.contract.service.SystemRoleServiceContract;
 import open.martin.reviewsystem.entity.SystemRole;
 import open.martin.reviewsystem.entity.UserAccount;
 import open.martin.reviewsystem.payload.UserAccountPayload;
@@ -20,6 +21,7 @@ public abstract class UserAccountModelMapper {
     public final UserAccountPayload convertUserAccountEntityToPayload(UserAccount userAccount) {
         UserAccountPayload payload = modelMapper.map(userAccount, UserAccountPayload.class);
         payload.setDateJoined(userAccount.getDateJoined().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
+        payload.setPassword(null);
         return payload;
     }
 
