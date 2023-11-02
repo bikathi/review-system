@@ -7,7 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -20,11 +21,10 @@ public class SampleReview {
 
     @Column(name = "date_posted", nullable = false)
     @Temporal(TemporalType.DATE)
-    private Date datePosted;
+    private LocalDate datePosted;
 
     @Column(name = "date_modified")
-    @Temporal(TemporalType.DATE)
-    private Date dateModified;
+    private LocalDateTime dateModified;
 
     @Column(name = "review_comment", nullable = false)
     @Basic

@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -56,8 +57,7 @@ public class UserAccount implements Serializable {
     private String email;
 
     @Column(name = "date_joined", nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Date dateJoined;
+    private LocalDate dateJoined;
 
     @Column(name = "password", nullable = false)
     private String password;

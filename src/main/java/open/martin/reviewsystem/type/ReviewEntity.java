@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -29,8 +30,7 @@ public class ReviewEntity {
     private String entityDescription;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "date_posted", nullable = false)
-    private Date datePosted;
+    private LocalDate datePosted;
 
     @Column(name = "preview_url", unique = true, nullable = false)
     @Size(min = 1, max = 200)
