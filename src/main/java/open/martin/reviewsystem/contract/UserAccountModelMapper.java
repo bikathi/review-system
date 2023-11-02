@@ -7,6 +7,8 @@ import open.martin.reviewsystem.type.Role;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public abstract class UserAccountModelMapper {
@@ -18,7 +20,7 @@ public abstract class UserAccountModelMapper {
 
     public final UserAccountPayload convertUserAccountEntityToPayload(UserAccount userAccount) {
         UserAccountPayload payload = modelMapper.map(userAccount, UserAccountPayload.class);
-        payload.setDateJoined(userAccount.getDateJoined().toString());
+        payload.setDateJoined(userAccount.getDateJoined().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
         return payload;
     }
 
@@ -49,7 +51,7 @@ public abstract class UserAccountModelMapper {
 
         // set the date joined
         if(payload.getDateJoined() != null) {
-            userAccount.setDateJoined(new Date());
+            userAccount.setDateJoined(LocalDate.parse(payload.getDateJoined(), DateTimeFormatter.ofPattern("dd-MM-yyyy")));
         }
 
         return userAccount;
