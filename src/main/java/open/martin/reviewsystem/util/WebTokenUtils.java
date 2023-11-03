@@ -30,11 +30,11 @@ public class WebTokenUtils {
         return Jwts.parserBuilder().setSigningKey(key()).build().parseClaimsJws(token).getBody().getSubject();
     }
 
-    public String generateJWT(Authentication authentication) {
+    public final String generateJWT(Authentication authentication) {
         UserDetailsImplementation userDetails = (UserDetailsImplementation) authentication.getPrincipal();
         Map<String, Object> userClaims = new HashMap<>();
         userClaims.put("userId", userDetails.getAccountId());
-        userClaims.put("", userDetails.getUsername());
+        userClaims.put("authorities", userDetails.getAuthorities());
 
         return Jwts.builder()
             .setSubject(userDetails.getEmail())
@@ -45,7 +45,7 @@ public class WebTokenUtils {
             .compact();
     }
 
-    public boolean validateJwtToken(String authToken) {
+    public final boolean validateJwtToken(String authToken) {
         try {
             Jwts.parserBuilder().setSigningKey(key()).build().parse(authToken);
             return true;
@@ -60,5 +60,16 @@ public class WebTokenUtils {
         }
 
         return false;
+    }
+
+    public final String retrieveUserNameFromJWT(String webTokenString) {
+        return Jwts.parserBuilder().setSigningKey(key()).build().parseClaimsJws(webTokenString).getBody().getSubject();
+    }
+
+    public final Claims retrieveClaimsFromJWT(String webTokenString) {
+        Jws<Claims> claims = Jwts.parserBuilder().setSigningKey(key()).build().parseClaimsJws(webTokenString);
+        return claims.getBody();
+
+
     }
 }
