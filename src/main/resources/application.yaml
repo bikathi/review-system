@@ -27,3 +27,9 @@ spring:
       password:
       timeout:
       cache-null-values: false
+
+# APP-SPECIFIC PROPS
+app:
+  security:
+    secret:
+    expiration:
