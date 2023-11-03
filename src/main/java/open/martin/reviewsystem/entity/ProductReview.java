@@ -17,17 +17,16 @@ import java.util.UUID;
 @NoArgsConstructor
 @Table(name ="product_review")
 @EqualsAndHashCode(callSuper = true)
-
 public class ProductReview extends SampleReview implements Serializable {
     @Serial
     @Transient
     private static final long serialVersionUID = UUID.randomUUID().getLeastSignificantBits();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
     private UserAccount user;
 }
