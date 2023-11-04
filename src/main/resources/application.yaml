@@ -7,7 +7,7 @@ spring:
   application:
     name: review-system
   jpa:
-    database-platform: org.hibernate.dialect.MySQL8Dialect
+#    database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
       ddl-auto: update
     show-sql: true
@@ -18,3 +18,18 @@ spring:
   # SET ACTIVE PROFILE TO THE DEV ENV
   profiles:
     active: dev
+  # REDIS CONFIGURATIONS
+  data:
+    redis:
+      database: 0
+      host: localhost
+      port:
+      password:
+      timeout:
+      cache-null-values: false
+
+# APP-SPECIFIC PROPS
+app:
+  security:
+    secret:
+    expiration:
