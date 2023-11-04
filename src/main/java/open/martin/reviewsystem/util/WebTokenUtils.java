@@ -34,7 +34,7 @@ public class WebTokenUtils {
         UserDetailsImplementation userDetails = (UserDetailsImplementation) authentication.getPrincipal();
         Map<String, Object> userClaims = new HashMap<>();
         userClaims.put("userId", userDetails.getAccountId());
-        userClaims.put("authorities", userDetails.getAuthorities());
+        userClaims.put("authorities", userDetails.getAuthorities().toArray());
 
         return Jwts.builder()
             .setSubject(userDetails.getEmail())
@@ -62,7 +62,7 @@ public class WebTokenUtils {
         return false;
     }
 
-    public final String retrieveUserNameFromJWT(String webTokenString) {
+    public final String retrieveSubject(String webTokenString) {
         return Jwts.parserBuilder().setSigningKey(key()).build().parseClaimsJws(webTokenString).getBody().getSubject();
     }
 
