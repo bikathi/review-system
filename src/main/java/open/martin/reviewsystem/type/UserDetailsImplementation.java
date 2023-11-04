@@ -24,28 +24,28 @@ public class UserDetailsImplementation implements UserDetails {
     private String email;
     private Boolean accountLocked;
     private Long accountId;
-    private Collection<? extends GrantedAuthority> authorities;
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
-    }
+    private List<? extends GrantedAuthority> authorities;
 
     public static UserDetailsImplementation build(UserAccount userAccount) {
         // conversion from Set<SystemRole> to List<SystemRole> here
         List<GrantedAuthority> grantedAuthorities = userAccount.getRoles().stream().map(
-            role -> new SimpleGrantedAuthority(role.getRoleName().name())
+                role -> new SimpleGrantedAuthority(role.getRoleName().name())
         ).collect(Collectors.toList());
 
         return new UserDetailsImplementation(
-            userAccount.getFirstName(),
-            userAccount.getLastName(),
-            userAccount.getUsername(),
-            userAccount.getPassword(),
-            userAccount.getEmail(),
-            userAccount.getAccountLocked(),
-            userAccount.getAccountId(),
-            grantedAuthorities);
+                userAccount.getFirstName(),
+                userAccount.getLastName(),
+                userAccount.getUsername(),
+                userAccount.getPassword(),
+                userAccount.getEmail(),
+                userAccount.getAccountLocked(),
+                userAccount.getAccountId(),
+                grantedAuthorities);
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
     }
 
     @Override
