@@ -17,4 +17,5 @@ public class UserAccountPayload {
     private String dateJoined; // format dd-MM-yyyy
     private String password;
     private List<String> roles;
+    private String lastLogin;
 }
