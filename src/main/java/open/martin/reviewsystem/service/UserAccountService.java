@@ -21,11 +21,16 @@ public class UserAccountService implements UserAccountServiceContract {
 
     @Override
     public void updateUserAccountDetails(UserAccount userAccount) throws EntityNotFoundException {
+        // should never actually happen but in case it does
         UserAccount existingUserAccount = userAccountRepository.findById(userAccount.getAccountId()).orElseThrow(
             () -> new EntityNotFoundException("Account with accountId " + userAccount.getAccountId() + " not found")
         );
 
-        // TODO: update the user account with necessary details
+        // update the user account with necessary details
+        existingUserAccount.setFirstName(userAccount.getFirstName());
+        existingUserAccount.setLastName(userAccount.getLastName());
+        existingUserAccount.setEmail(userAccount.getEmail());
+        existingUserAccount.setUsername(userAccount.getUsername());
 
         // save the user
         userAccountRepository.save(existingUserAccount);
@@ -33,20 +38,20 @@ public class UserAccountService implements UserAccountServiceContract {
 
     @Override
     public UserAccount getUserAccountById(Long accountId) throws EntityNotFoundException {
-        UserAccount existingUserAccount = userAccountRepository.findById(accountId).orElseThrow(
-            () -> new EntityNotFoundException("User of accountId " + accountId + " not found")
+        return userAccountRepository.findById(accountId).orElseThrow(
+            () -> new EntityNotFoundException("Account by accountId " + accountId + " not found")
         );
+    }
 
-        return existingUserAccount;
+    @Override
+    public UserAccount getUserAccountByUsername(String username) {
+        return userAccountRepository.findByUsername(username).orElseThrow(
+            () -> new EntityNotFoundException("Account by username " + username + " not found")
+        );
     }
 
     @Override
     public void deleteUserAccountById(Long accountId) {
         userAccountRepository.deleteById(accountId);
-    }
-
-    @Override
-    public void deleteUserAccountByUsername(String username) {
-        userAccountRepository.deleteByUsername(username);
     }
 }
