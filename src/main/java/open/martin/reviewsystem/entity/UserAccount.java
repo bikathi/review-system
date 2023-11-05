@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -57,6 +58,9 @@ public class UserAccount implements Serializable {
 
     @Column(name = "date_joined", nullable = false)
     private LocalDate dateJoined;
+
+    @Column(name = "last_login")
+    private LocalDateTime lastLogin;
 
     @Column(name = "password", nullable = false)
     private String password;
