@@ -3,6 +3,10 @@ package open.martin.reviewsystem.controller;
 import lombok.extern.slf4j.Slf4j;
 import open.martin.reviewsystem.contract.controller.UserAccountControllerContract;
 import open.martin.reviewsystem.contract.mapper.UserAccountModelMapper;
+import open.martin.reviewsystem.contract.service.UserAccountServiceContract;
+import open.martin.reviewsystem.entity.UserAccount;
+import open.martin.reviewsystem.payload.UserAccountPayload;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -12,12 +16,18 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/api/v1/user-account")
 @Slf4j
 public final class UserAccountController extends UserAccountModelMapper implements UserAccountControllerContract {
-    @Override
-    @ResponseStatus(code = HttpStatus.CREATED)
-    @PostMapping(value = "/signup", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> createNewUserAccount() {
+    @Autowired
+    private UserAccountServiceContract userAccountService;
 
-        return null;
+    @Override
+    @ResponseStatus(code = HttpStatus.OK)
+    @PostMapping(value = "/signup", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> createNewUserAccount(@RequestBody UserAccountPayload payload) {
+        UserAccount userAccount = convertPayloadToUserAccountEntity(payload);
+        userAccount = userAccountService.createUserAccount(userAccount);
+
+        UserAccountPayload resposePayload = convertUserAccountEntityToPayload(userAccount);
+        return ResponseEntity.ok().body(resposePayload);
     }
 
     @Override
