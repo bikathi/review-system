@@ -19,6 +19,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -52,7 +53,9 @@ public class UserAccountModelMapperTests {
             "@johndoe",
             "johndoe@gmail.com",
             LocalDate.parse("01-11-2023", DateTimeFormatter.ofPattern("dd-MM-yyyy")),
+            LocalDateTime.of(2023, 11, 5, 11, 58),
             "testPassword",
+            false,
             new HashSet<>(List.of(new SystemRole(1, Role.ROLE_COMMENTER), new SystemRole(2, Role.ROLE_REVIEWER))),
             null,
             null
